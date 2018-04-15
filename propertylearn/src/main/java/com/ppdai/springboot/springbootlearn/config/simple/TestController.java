@@ -1,4 +1,4 @@
-package com.ppdai.springboot.springbootlearn.config.learn;
+package com.ppdai.springboot.springbootlearn.config.simple;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.ppdai.springboot.springbootlearn.config.learn;
+package com.ppdai.springboot.springbootlearn.config.simple;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;

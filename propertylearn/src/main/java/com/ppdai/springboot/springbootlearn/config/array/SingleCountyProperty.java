@@ -1,15 +1,9 @@
-package com.ppdai.springboot.springbootlearn.config.learn;
+package com.ppdai.springboot.springbootlearn.config.array;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+public class SingleCountyProperty {
 
-@Component
-public class CountryProperty {
-
-    @Value("${world.country.china.name}")
     private String name;
 
-    @Value("${world.country.china.size}")
     private int size;
 
     public String getName() {
@@ -32,4 +26,5 @@ public class CountryProperty {
     public String toString() {
         return "name=" + name + ", size=" + size;
     }
+
 }

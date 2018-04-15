@@ -1,18 +1,15 @@
-package com.ppdai.springboot.springbootlearn.config.learn;
+package com.ppdai.springboot.springbootlearn.config.simple;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-//@Component, 必须使 CountryProperty2 成为一个 bean
-//一种是使用 @Component注解，另一种是在Application 类中, 用@EnableConfigurationProperties()来注解
-//此处，已经在 SpringBootApplication 类中注解
-//@Component
-@ConfigurationProperties(prefix = "world.country.china")
-public class CountryProperty2 {
+@Component
+public class CountryProperty {
 
+    @Value("${world.country.china.name}")
     private String name;
 
+    @Value("${world.country.china.size}")
     private int size;
 
     public String getName() {
