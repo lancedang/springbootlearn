@@ -1,4 +1,4 @@
-package com.lance.springboot.springbootlearn.config.simple;
+package com.lance.springboot.springbootlearn.property.simple;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

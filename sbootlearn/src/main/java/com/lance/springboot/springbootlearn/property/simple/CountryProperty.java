@@ -1,16 +1,18 @@
-package com.lance.springboot.springbootlearn.config.simple;
+package com.lance.springboot.springbootlearn.property.simple;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-//@Component, 必须使 CountryProperty2 成为一个 bean
-//成为 bean 有两种方式，一种是使用 @Component注解，另一种是在Application 类中, 用@EnableConfigurationProperties()来注解
+/**
+ * 通过 @Value 形式绑定属性
+ */
 @Component
-@ConfigurationProperties(prefix = "world.country.china")
-public class CountryProperty2 {
+public class CountryProperty {
 
+    @Value("${world.country.china.name}")
     private String name;
 
+    @Value("${world.country.china.size}")
     private int size;
 
     public String getName() {

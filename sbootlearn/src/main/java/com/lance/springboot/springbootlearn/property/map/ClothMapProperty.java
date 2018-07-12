@@ -1,4 +1,4 @@
-package com.lance.springboot.springbootlearn.config.map;
+package com.lance.springboot.springbootlearn.property.map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

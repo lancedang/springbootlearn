@@ -1,6 +1,4 @@
-package com.lance.springboot.springbootlearn.config.array;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
+package com.lance.springboot.springbootlearn.property.array;
 
 /**
  * 定义一个 pojo 类封装属性

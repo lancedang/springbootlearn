@@ -1,6 +1,5 @@
-package com.lance.springboot.springbootlearn.config.array;
+package com.lance.springboot.springbootlearn.property.array;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**

@@ -1,4 +1,4 @@
-package com.lance.springboot.springbootlearn.config.simple;
+package com.lance.springboot.springbootlearn.property.simple;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;

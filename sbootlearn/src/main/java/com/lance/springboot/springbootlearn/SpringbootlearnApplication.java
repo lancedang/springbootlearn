@@ -1,8 +1,9 @@
 package com.lance.springboot.springbootlearn;
 
-import com.lance.springboot.springbootlearn.config.array.CountryArrayBuilder;
-import com.lance.springboot.springbootlearn.config.map.ClothMapProperty;
-import com.lance.springboot.springbootlearn.config.simple.CountryProperty2;
+import com.lance.springboot.springbootlearn.property.array.CountryArrayBuilder;
+import com.lance.springboot.springbootlearn.property.array.PeopleNumberProperty;
+import com.lance.springboot.springbootlearn.property.map.ClothMapProperty;
+import com.lance.springboot.springbootlearn.property.simple.CountryProperty2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,10 +17,18 @@ public class SpringbootlearnApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringbootlearnApplication.class, args);
+
+		//以数组形式读取属性
 		CountryArrayBuilder countryArrayBuilder = applicationContext.getBean(CountryArrayBuilder.class);
 		System.out.println("Country 数组：" + countryArrayBuilder.getStudent());
 
+		//以 map 形式读取属性
 		ClothMapProperty clothMapProperty = applicationContext.getBean(ClothMapProperty.class);
 		System.out.println("Cloth Map：" + clothMapProperty.getCloth());
+
+		//对以逗号分隔的属性值组成数组
+		PeopleNumberProperty numberProperty = applicationContext.getBean(PeopleNumberProperty.class);
+		System.out.println(numberProperty.getNumber());
+		System.out.println(numberProperty.getNumberString());
 	}
 }

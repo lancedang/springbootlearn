@@ -1,4 +1,4 @@
-package com.lance.springboot.springbootlearn.config.array;
+package com.lance.springboot.springbootlearn.property.array;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
