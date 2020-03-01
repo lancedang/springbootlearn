@@ -4,6 +4,7 @@ import com.lance.springboot.datasourcedemo.entity.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class DatasourceDemoApplicationTests {
 
     @Autowired
+    @Qualifier("myDataSource")
     DataSource dataSource;
 
     @Test
@@ -32,7 +34,7 @@ public class DatasourceDemoApplicationTests {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from student");
         Student student = null;
-        while (resultSet.next()){
+        while (resultSet.next()) {
             student = new Student();
             student.setId(resultSet.getInt("id"));
             student.setName(resultSet.getString("name"));
