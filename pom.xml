@@ -13,7 +13,7 @@
 
     <modules>
         <module>datasource-demo</module>
-        <module>beannameautorproxy</module>
+        <module>beannameautoproxy</module>
     </modules>
     <!--	<parent>
             <groupId>org.springframework.boot</groupId>
