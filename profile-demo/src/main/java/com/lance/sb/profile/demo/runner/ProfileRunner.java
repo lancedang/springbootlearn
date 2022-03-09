@@ -23,6 +23,7 @@ public class ProfileRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String property = this.property.readProperty();
+        log.info(this.getClass().getSimpleName() + ", 未延迟执行");
         log.info("property={}", property);
         log.info("user.nickname={}", name);
     }

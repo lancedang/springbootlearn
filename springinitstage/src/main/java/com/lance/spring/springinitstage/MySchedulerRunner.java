@@ -1,17 +1,14 @@
-package com.lance.sb.profile.demo.scheduler;
+package com.lance.spring.springinitstage;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Component
-@Slf4j
-public class MyScheduler implements CommandLineRunner {
+public class MySchedulerRunner implements CommandLineRunner {
 
     //应用启动后，延迟执行一次
     private ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -23,7 +20,8 @@ public class MyScheduler implements CommandLineRunner {
 
 
     public void run() {
-        log.info("hi");
+        System.out.println("CommandLineRunner, " +this.getClass().getSimpleName() + ", 延迟5s执行");
+
     }
 
     @Override
