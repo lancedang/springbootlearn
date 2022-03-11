@@ -1,7 +1,10 @@
 package com.lance.learn.redisdemo;
 
+import com.lance.learn.redisdemo.config.BeanFactoryUtil;
+import com.lance.learn.redisdemo.config.RedisConfig;
 import com.lance.learn.redisdemo.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,8 +27,8 @@ public class RedisDemoApplication implements CommandLineRunner {
 
     }
 
-    @Override
-    public void run(String... strings) throws Exception {
+    //@Override
+    public void run2(String... strings) throws Exception {
         //redis锁的key
         String name = "lance";
         //redis锁的value,分布式锁要用相同的key,value
@@ -81,5 +84,16 @@ public class RedisDemoApplication implements CommandLineRunner {
         //这里设置的时间很有意思 > 互斥方法5s
         TimeUnit.SECONDS.sleep(6);
         Executors.defaultThreadFactory().newThread(run).start();
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        RedisConfig redisConfigBean = BeanFactoryUtil.getBean(RedisConfig.class);
+
+        RedisConfig beanRefactor = BeanFactoryUtil.getBeanRefactor(RedisConfig.class);
+
+        log.info("hashCode={}", redisConfigBean.hashCode());
+        log.info("hashCode={}", beanRefactor.hashCode());
+
     }
 }
