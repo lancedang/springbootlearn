@@ -6,6 +6,7 @@ import org.quartz.impl.StdSchedulerFactory;
 
 @Slf4j
 public class HelloWorldJob implements Job {
+
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         log.info("hello world job {}", context.getJobDetail().getKey());
