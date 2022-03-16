@@ -2,6 +2,7 @@ package com.lance.learn.redisdemo;
 
 import com.lance.learn.redisdemo.config.BeanFactoryUtil;
 import com.lance.learn.redisdemo.config.RedisConfig;
+import com.lance.learn.redisdemo.service.AspectService;
 import com.lance.learn.redisdemo.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactoryUtils;
@@ -20,6 +21,9 @@ public class RedisDemoApplication implements CommandLineRunner {
 
     @Autowired
     private RedisService redisService;
+
+    @Autowired
+    private AspectService aspectService;
 
 
     public static void main(String[] args) {
@@ -94,6 +98,9 @@ public class RedisDemoApplication implements CommandLineRunner {
 
         log.info("hashCode={}", redisConfigBean.hashCode());
         log.info("hashCode={}", beanRefactor.hashCode());
+
+        aspectService.test1();
+        aspectService.test2();
 
     }
 }
