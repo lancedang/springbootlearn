@@ -1,11 +1,16 @@
-package com.lance.quartzdemo.scheduler;
+package com.lance.quartzdemo.config;
 
+import com.lance.quartzdemo.scheduler.HelloWorldSpringJob;
 import org.quartz.*;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
-@Configuration
-public class CoreConfig {
+//@Configuration
+public class BasicConfig {
 
     @Bean
     public JobDetail myJobDetail() {

@@ -1,4 +1,4 @@
-package com.lance.quartzdemo.scheduler;
+package com.lance.quartzdemo.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
