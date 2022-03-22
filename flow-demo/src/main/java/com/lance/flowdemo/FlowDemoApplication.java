@@ -4,6 +4,7 @@ import com.lance.flowdemo.constant.FlowKeyEnum;
 import com.lance.flowdemo.entity.AdminFlowCase;
 import com.lance.flowdemo.entity.AdminFlowTemplateConfig;
 import com.lance.flowdemo.entity.CreateFlowParam;
+import com.lance.flowdemo.entity.MyTestBean;
 import com.lance.flowdemo.service.AdminFlowTemplateConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.AopContext;
@@ -12,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,9 @@ import java.util.concurrent.TimeUnit;
 @EnableAspectJAutoProxy(exposeProxy = true)
 @Slf4j
 public class FlowDemoApplication implements CommandLineRunner {
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Autowired
     private FlowBiz flowBiz;
@@ -49,6 +54,10 @@ public class FlowDemoApplication implements CommandLineRunner {
 
         flowBiz.approve(case2);
         flowBiz.handle(case2);
+
+        MyTestBean myTestBean = applicationContext.getBean("myTestBean", MyTestBean.class);
+        log.info("mytestbean={}", myTestBean.getName());
+        log.info("mytestbean={}", myTestBean.getAddr());
 
     }
 
