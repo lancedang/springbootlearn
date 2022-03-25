@@ -50,4 +50,10 @@ public class TestController {
         }
         return null;
     }
+
+
+    @RequestMapping(value = "/test6", method = RequestMethod.POST)
+    public String test6() {
+        return "test string";
+    }
 }

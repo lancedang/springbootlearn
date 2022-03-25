@@ -48,6 +48,11 @@ public class MyUnfiedAdvice implements ResponseBodyAdvice {
 
         log.info("new Response={}", response);
 
+        //controller是String类型需要特殊处理一下
+        if (Objects.nonNull(o) && o instanceof String) {
+            return gson.toJson(response);
+        }
+
         return response;
     }
 
