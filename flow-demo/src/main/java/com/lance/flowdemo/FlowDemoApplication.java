@@ -1,10 +1,8 @@
 package com.lance.flowdemo;
 
 import com.lance.flowdemo.constant.FlowKeyEnum;
-import com.lance.flowdemo.entity.AdminFlowCase;
-import com.lance.flowdemo.entity.AdminFlowTemplateConfig;
-import com.lance.flowdemo.entity.CreateFlowParam;
-import com.lance.flowdemo.entity.MyTestBean;
+import com.lance.flowdemo.entity.*;
+import com.lance.flowdemo.manager.TxManager;
 import com.lance.flowdemo.service.AdminFlowTemplateConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.AopContext;
@@ -34,12 +32,25 @@ public class FlowDemoApplication implements CommandLineRunner {
     @Autowired
     private AdminFlowTemplateConfigService adminFlowTemplateConfigService;
 
+    @Autowired
+    private TxManager txManager;
+
     public static void main(String[] args) {
         SpringApplication.run(FlowDemoApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+
+    public void run(String... args) throws Exception{
+        try {
+            TxDemo txDemo = new TxDemo();
+            txDemo.setName("demo1");
+            txManager.addTx(txDemo);
+        } catch (Exception e) {
+            log.error("tx error, ", e);
+        }
+    }
+
+    public void run3(String... args) throws Exception {
         //模拟多个独立审批流程
         //step-1)通过2个flow，同时执行每个节点处理逻辑
 
