@@ -5,6 +5,7 @@ import com.lance.flowdemo.entity.*;
 import com.lance.flowdemo.manager.TxManager;
 import com.lance.flowdemo.service.AdminFlowTemplateConfigService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,10 +13,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
+import java.net.URL;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
@@ -39,8 +45,39 @@ public class FlowDemoApplication implements CommandLineRunner {
         SpringApplication.run(FlowDemoApplication.class, args);
     }
 
+    public void run(String... args) throws Exception {
+        Properties properties = new Properties();
+        final String springFactoryFile = "META-INF/spring.factories";
+        Set<String> applicationContextInitializerSet = new HashSet<>();
+        Set<String> applicationListenerSet = new HashSet<>();
 
-    public void run(String... args) throws Exception{
+        Enumeration<URL> resources = FlowDemoApplication.class.getClassLoader().getResources(springFactoryFile);
+        while (resources.hasMoreElements()) {
+            URL url = resources.nextElement();
+            UrlResource resource = new UrlResource(url);
+
+            log.info("url={}", url);
+
+            Properties t = PropertiesLoaderUtils.loadProperties(resource);
+            properties.putAll(t);
+
+            String property = t.getProperty(ApplicationContextInitializer.class.getName());
+            String property2 = t.getProperty(ApplicationListener.class.getName());
+
+            if (StringUtils.isNotBlank(property)) {
+                applicationContextInitializerSet.addAll(Arrays.asList(property.split(",")));
+                applicationListenerSet.addAll(Arrays.asList(property2.split(",")));
+            }
+        }
+
+        log.info("set={}", applicationContextInitializerSet);
+        log.info("set2={}", applicationListenerSet);
+
+
+    }
+
+    //测试TransactionSynchronizationManager
+    public void run4(String... args) throws Exception{
         try {
             TxDemo txDemo = new TxDemo();
             txDemo.setName("demo1");

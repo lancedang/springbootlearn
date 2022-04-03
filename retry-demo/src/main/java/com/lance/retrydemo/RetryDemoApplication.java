@@ -22,12 +22,16 @@ public class RetryDemoApplication implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         RetryCallback<Boolean, Exception> retryCallback = (retryContext) -> retryMethod();
-
+        boolean isOk = true;
         try {
             retryTemplate.execute(retryCallback);
         } catch (Exception e) {
             log.error("Error, ", e);
+            isOk = false;
         }
+
+        log.info("isOk={}", isOk);
+
 
     }
 

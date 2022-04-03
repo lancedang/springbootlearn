@@ -25,17 +25,19 @@ public class RetryDemoConfig {
         fixedBackOffPolicy.setBackOffPeriod(2000);
 
         SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
-        simpleRetryPolicy.setMaxAttempts(3);
+        simpleRetryPolicy.setMaxAttempts(2);
+
+
 
         Map<Class<? extends Throwable>, Boolean> retryableExceptions = new HashMap<>();
         retryableExceptions.put(RuntimeException.class, true);
         //重试条件RuntimeException并且message包含qiankai字样，如果换成lisi直接失败告终
-        RetryPolicy policy = new ExpressionRetryPolicy(3, retryableExceptions, true, "#{message.contains('qiankai')}");
+        RetryPolicy policy = new ExpressionRetryPolicy(5, retryableExceptions, true, "#{message.contains('qiankai')}");
 
 
         RetryTemplate retryTemplate = new RetryTemplate();
         retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
-        retryTemplate.setRetryPolicy(policy);
+        retryTemplate.setRetryPolicy(simpleRetryPolicy);
 
 
         return retryTemplate;
