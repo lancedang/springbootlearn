@@ -11,10 +11,13 @@ import com.lance.apollodemo.spring.annotation.MyApolloAnnotationBeanPostProcesso
 import com.lance.apollodemo.spring.annotation.MyApolloConfigImportBeanDefinitionRegistrar;
 import com.lance.apollodemo.spring.annotation.MyEnableApolloConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +27,13 @@ import java.util.Map;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @MyEnableApolloConfig
 @Slf4j
-public class ApolloDemoApplication {
+public class ApolloDemoApplication implements CommandLineRunner {
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    private MyApolloAnnotationBeanPostProcessor annotationBeanPostProcessor;
 
     public static void main(String[] args) {
 
@@ -72,7 +81,11 @@ public class ApolloDemoApplication {
         log.info("start fire config change event");
         myDefaultConfig.fireConfigChange(event);
 
-
     }
 
+    @Override
+    public void run(String... strings) throws Exception {
+        log.info("autowired annotationBeanPostProcessor {}", annotationBeanPostProcessor.toString());
+        log.info("person.name=" + environment.getProperty("person.name"));
+    }
 }

@@ -1,6 +1,10 @@
 package com.lance.redislearndemo;
 
 import org.junit.Test;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
+
+import java.io.IOException;
+import java.util.Properties;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +19,9 @@ public class RedisTest {
     }
 
     @Test
-    public void listOperations() {
+    public void listOperations() throws IOException {
+        Properties properties = PropertiesLoaderUtils.loadAllProperties("self.properties");
+        System.out.println(properties.getProperty("name"));
     }
 
     @Test

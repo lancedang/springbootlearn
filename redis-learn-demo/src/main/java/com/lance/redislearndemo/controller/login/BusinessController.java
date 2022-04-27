@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class BusinessController {
 
+    @IgnoreLoginAnnotation
     @RequestMapping(value = "/do", method = RequestMethod.GET)
     public String doBusiness(String name) {
         log.info("doBusiness={}", name);
