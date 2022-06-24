@@ -14,7 +14,7 @@ public class MyOauthController {
     @Autowired
     private TokenStore tokenStore;
 
-    @PostMapping("/test/read")
+    @GetMapping("/test/read")
     public String read() {
         return "success";
     }

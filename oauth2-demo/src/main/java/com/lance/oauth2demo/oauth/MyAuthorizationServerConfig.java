@@ -1,12 +1,9 @@
 package com.lance.oauth2demo.oauth;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -30,6 +27,13 @@ public class MyAuthorizationServerConfig extends AuthorizationServerConfigurerAd
         return new InMemoryTokenStore();
     }
 
+/*    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients();
+    }*/
+
     //配置client，请求方相关信息
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -37,12 +41,13 @@ public class MyAuthorizationServerConfig extends AuthorizationServerConfigurerAd
         clients.inMemory()
                 .withClient("client_id")
                 .resourceIds("")
-                //.scopes("write")
+                .scopes("read")
                 //.authorities("ROLE_USER_1", "ROLE_ADMIN_1")
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token")
                 .secret("scerect1")
                 .accessTokenValiditySeconds(60 * 600)
-                .refreshTokenValiditySeconds(60 * 600);
+                .refreshTokenValiditySeconds(60 * 600)
+                .redirectUris("http://baidu.com");
 
     }
 
@@ -50,7 +55,7 @@ public class MyAuthorizationServerConfig extends AuthorizationServerConfigurerAd
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore())
                 .authenticationManager(authenticationManager);
-                //.userDetailsService(myUserDetailService);
+        //.userDetailsService(myUserDetailService);
         //super.configure(endpoints);
     }
 }

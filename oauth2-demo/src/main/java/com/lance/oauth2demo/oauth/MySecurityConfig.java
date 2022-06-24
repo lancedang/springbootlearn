@@ -3,6 +3,7 @@ package com.lance.oauth2demo.oauth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@Order(1)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     //用于对接client携带过来的username/password校验
@@ -37,9 +39,11 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.requestMatchers().anyRequest()
                 .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**")
-                .permitAll()
+                    .authorizeRequests()
+                    .antMatchers("/oauth/**")
+                    .permitAll()
+                .and()
+                    .formLogin().permitAll();
 
         ;
     }

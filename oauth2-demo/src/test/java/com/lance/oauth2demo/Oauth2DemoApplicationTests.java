@@ -11,3 +11,9 @@ class Oauth2DemoApplicationTests {
     }
 
 }
+
+class Hello{
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
+}
