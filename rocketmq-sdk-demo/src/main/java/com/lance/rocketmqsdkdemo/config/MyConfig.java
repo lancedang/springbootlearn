@@ -1,7 +1,7 @@
 package com.lance.rocketmqsdkdemo.config;
 
 import api.config.ConfigKey;
-import com.lance.rocketmqsdkdemo.service.MonitorService;
+//import com.lance.rocketmqsdkdemo.service.MonitorService;
 import com.xiaomi.infra.galaxy.emq.thrift.MessageService;
 import com.xiaomi.mifi.scf.commons.mq.MessageClientFactory;
 import com.xiaomi.mifi.scf.commons.mq.MessageConsumer;
@@ -35,8 +35,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class MyConfig {
 
-    @Autowired
-    private MonitorService monitorService;
+    //@Autowired
+    //private MonitorService monitorService;
 
     //region rocketUrl、队列、应用名、买点名信息
     private String queueName = "CL24628/sandbox_1_asset_repay_info_test";
@@ -118,14 +118,14 @@ public class MyConfig {
             public void metricSendEmqBranch() {
                 //emq分支埋点统计
                 log.info("normalProducer callback by emq");
-                monitorService.counter(metricEmqProducerName, tags);
+                //monitorService.counter(metricEmqProducerName, tags);
             }
 
             @Override
             public void metricSendRocketBranch() {
                 //rocket分支埋点统计
                 log.info("normalProducer callback by rocket");
-                monitorService.counter(metricRocketProducerName, tags);
+                //monitorService.counter(metricRocketProducerName, tags);
             }
 
             @Override
@@ -138,7 +138,7 @@ public class MyConfig {
             public void metricSend() {
                 //发送总计埋点-逻辑应该是上述2个分支之和
                 log.info("normalProducer send callback");
-                monitorService.counter(metricNormalProducerSendName, tags);
+                //monitorService.counter(metricNormalProducerSendName, tags);
             }
         });
 
@@ -162,13 +162,13 @@ public class MyConfig {
             @Override
             public void metricSendError() {
                 log.info("order producer send error callback");
-                monitorService.counter(metricOrderSendErrorName, tags);
+                //monitorService.counter(metricOrderSendErrorName, tags);
             }
 
             @Override
             public void metricSend() {
                 log.info("order producer send callback");
-                monitorService.counter(metricOrderSendName, tags);
+                //monitorService.counter(metricOrderSendName, tags);
             }
         });
 
@@ -230,14 +230,14 @@ public class MyConfig {
             @Override
             public void metricSendError() {
                 log.info("order producer send error callback");
-                monitorService.counter(metricTranSendErrorName, new HashMap<>());
+                //monitorService.counter(metricTranSendErrorName, new HashMap<>());
 
             }
 
             @Override
             public void metricSend() {
                 log.info("order producer send callback");
-                monitorService.counter(metricTranSendName, new HashMap<>());
+                //monitorService.counter(metricTranSendName, new HashMap<>());
             }
         });
 
@@ -258,7 +258,7 @@ public class MyConfig {
 
         messageConsumer.setMessageConsumerCallback((msg) -> {
             log.info("consumer by emq, {}", msg);
-            monitorService.counter(metricEmqConsumerName, tags);
+            //monitorService.counter(metricEmqConsumerName, tags);
             return true;
         });
 
@@ -288,11 +288,11 @@ public class MyConfig {
 
                 if (bodyBytes.length > 100) {
                     //消费成功埋点-这个自行埋点即可，不需要实现sdk callback接口
-                    monitorService.counter(metricNormalConsumeName, tags);
+                    //monitorService.counter(metricNormalConsumeName, tags);
                     return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
                 } else {
                     //消费失败埋点
-                    monitorService.counter(metricNormalConsumeErrorName, tags);
+                    //monitorService.counter(metricNormalConsumeErrorName, tags);
                     return ConsumeConcurrentlyStatus.RECONSUME_LATER;
                 }
             }
@@ -301,7 +301,7 @@ public class MyConfig {
             public void metricSubscribe() {
                 log.info("normal Consumer Subscribe  callback");
                 //这个是订阅埋点
-                monitorService.counter(metricNormalConsumerSubscribeName, tags);
+                //monitorService.counter(metricNormalConsumerSubscribeName, tags);
             }
         });
 
@@ -333,7 +333,7 @@ public class MyConfig {
                             msg.getTags(),
                             msg.getTransactionId());
                 }
-                monitorService.counter(metricOrderConsumeName, new HashMap<>());
+                //monitorService.counter(metricOrderConsumeName, new HashMap<>());
                 return ConsumeOrderlyStatus.SUCCESS;
             }
         });
@@ -362,7 +362,7 @@ public class MyConfig {
                 byte[] bodyBytes = messageExt.getBody();
                 log.info("trans consumer ={}", new String(bodyBytes));
                 //消费成功埋点-这个自行埋点即可，不需要实现sdk callback接口
-                monitorService.counter(metricTranConsumeName, tags);
+                //monitorService.counter(metricTranConsumeName, tags);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
 
             }

@@ -61,7 +61,7 @@ public class MonitorService {
 
     static {
         try {
-            boolean production = EnvUtils.isProduction();
+            boolean production = true || EnvUtils.isProduction();
             if (production) {
                 url = "10.128.192.43:9091";
                 prometheusUrl = "http://monitor.scf.pt.xiaomi.com";

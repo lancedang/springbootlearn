@@ -55,6 +55,10 @@ public class Redis {
         stringRedisTemplate.expire(key, timeout, unit);
     }
 
+    public SetOperations<String, String> set() {
+        return stringRedisTemplate.opsForSet();
+    }
+
     public boolean hasKey(String key) {
         return stringRedisTemplate.hasKey(key);
     }

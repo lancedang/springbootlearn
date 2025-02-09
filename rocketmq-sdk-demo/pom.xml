@@ -73,7 +73,7 @@
             <groupId>com.xiaomi.mifi</groupId>
             <artifactId>scf-commons</artifactId>
             <!--   <version>3.2.19</version>-->
-            <version>3.2.56-rocketMQ-SNAPSHOT</version>
+            <version>staging-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.101tec</groupId>
