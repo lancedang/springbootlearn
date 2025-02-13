@@ -12,23 +12,19 @@ import java.util.Objects;
 
 @Component
 @Slf4j
-public class MyEventBeanPostProcessor implements BeanPostProcessor {
-
+public class MyEventBeanPostProcessor
+        implements BeanPostProcessor {
     @Autowired
     private MyEventHandlerManager eventHandlerManager;
-
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-
         //找到自定义注解的handler并将其缓存到event map
         Class<?> aClass = bean.getClass();
         Method[] declaredMethods = aClass.getDeclaredMethods();
-
         for (Method declaredMethod : declaredMethods) {
             //1）获取所有带有自定义注解的item-handler bean，item代表用户的每种处理event的逻辑单元
             //每种处理单元是以EventTypeEnum划分的
             MyEventHandlerAnnotation annotation = declaredMethod.getAnnotation(MyEventHandlerAnnotation.class);
-
             if (Objects.isNull(annotation)) {
                 continue;
             }

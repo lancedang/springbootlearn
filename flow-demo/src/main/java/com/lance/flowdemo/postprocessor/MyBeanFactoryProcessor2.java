@@ -10,9 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class MyBeanFactoryProcessor2 implements BeanFactoryPostProcessor {
+public class MyBeanFactoryProcessor2
+        implements BeanFactoryPostProcessor {
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    public void postProcessBeanFactory(
+            ConfigurableListableBeanFactory beanFactory)
+            throws BeansException {
 
         BeanDefinition myTestBean = beanFactory.getBeanDefinition("myTestBean");
         myTestBean.getPropertyValues().add("name", "qiankai");

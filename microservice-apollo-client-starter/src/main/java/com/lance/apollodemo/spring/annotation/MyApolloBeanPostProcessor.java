@@ -11,13 +11,12 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class MyApolloBeanPostProcessor implements BeanPostProcessor, PriorityOrdered {
+public abstract class MyApolloBeanPostProcessor
+        implements BeanPostProcessor, PriorityOrdered {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-
         List<Field> allFields = findAllFields(bean.getClass());
         List<Method> allMethods = findAllMethods(bean.getClass());
-
         for (Field field : allFields) {
             processField(field, bean);
         }
