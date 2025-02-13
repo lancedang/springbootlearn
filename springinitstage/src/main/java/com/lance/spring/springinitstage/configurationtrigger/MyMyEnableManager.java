@@ -1,4 +1,4 @@
-package com.lance.spring.springinitstage.manager;
+package com.lance.spring.springinitstage.configurationtrigger;
 
 import com.lance.authority.autoconfigure2.ByImportAnnoBean;
 import com.lance.authority.autoconfigure2.MyEnableAnnotation;

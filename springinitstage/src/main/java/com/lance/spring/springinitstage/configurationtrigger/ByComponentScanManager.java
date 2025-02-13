@@ -1,4 +1,4 @@
-package com.lance.spring.springinitstage.manager;
+package com.lance.spring.springinitstage.configurationtrigger;
 
 import com.lance.authority.autoconfigure.ByComponentScanBean;
 import org.springframework.beans.factory.annotation.Autowired;
