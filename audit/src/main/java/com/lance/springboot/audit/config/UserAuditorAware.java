@@ -7,7 +7,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Component //必须将 AuditorAware 实例作为 bean 注入到上下文
+//@Component //必须将 AuditorAware 实例作为 bean 注入到上下文
 public class UserAuditorAware implements AuditorAware<String> {
 
     public static final String DEFAULT_SYSTEM_NAME = "system";

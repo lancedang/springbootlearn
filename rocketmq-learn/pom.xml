@@ -9,9 +9,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>springinitstage</artifactId>
+    <artifactId>rocketmq-learn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springinitstage</name>
+    <name>rocketmq-learn</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,12 +19,6 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.lance.authority</groupId>
-            <artifactId>spring-starter-demo</artifactId>
-            <version>1.1</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
