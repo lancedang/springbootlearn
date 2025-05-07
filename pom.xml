@@ -15,6 +15,7 @@
         <module>datasource-demo</module>
         <module>beannameautoproxy</module>
         <module>netty-demo</module>
+
     </modules>
     <!--	<parent>
             <groupId>org.springframework.boot</groupId>

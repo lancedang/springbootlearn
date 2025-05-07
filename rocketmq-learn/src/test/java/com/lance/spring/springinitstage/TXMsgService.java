@@ -7,6 +7,8 @@ import org.apache.rocketmq.client.producer.TransactionListener;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.junit.Test;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
@@ -51,6 +53,11 @@ public class TXMsgService {
         transactionProducer.shutdown();
 
 
+    }
+
+    @Test
+    public void testSend() {
+        KafkaProperties.Producer
     }
 
 }
